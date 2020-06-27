@@ -1,0 +1,31 @@
+#blog-title h1{
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+    color: black;
+    font-family: cursive;
+
+    /*shadow*/
+    text-shadow: 
+    4px 4px 0px #d5d5d5, 
+    7px 7px 0px rgba(0, 0, 0, 0.2);
+}
+
+#blog-content {
+    margin: 15px;
+    font-size: 1.2rem;
+}
+
+#delete-view-blog{
+    float: right;
+    background:tomato;
+    padding: 6px;
+    border-radius: 4px;
+    margin: 15px;
+    cursor: pointer;
+    color: white;
+  }
+  
+#delete-view-blog:hover{
+    background:red;
+}
