@@ -9,7 +9,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
     <title>Blogs</title>
 </head>
 
@@ -28,10 +27,19 @@
     </header>
 
     <main>
-        <div class="wrapper">
-            <div class="page-banner">
+        <div id="wrapper">
+            <div id="page-banner">
                 <h1>Add blog 👍</h1>
             </div>
+            <form id="add-blog">
+                <div>
+                    <label for="add-input-title">Title</label><br><br>
+                    <textarea id="add-input-title" placeholder="Title ..."></textarea><br><br>
+                    <label for="add-input-content">Content</label><br><br>
+                    <textarea id="add-input-content" placeholder="Content ..."></textarea><br><br>
+                    <button>Add</button>
+                </div>
+            </form>
         </div>
 
     </main>

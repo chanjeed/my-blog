@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 const dotenv = require('dotenv').config();
+console.log(dotenv);
 module.exports = {
     entry: {
         index: './src/pages/index.js',

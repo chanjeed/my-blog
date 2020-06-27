@@ -16,10 +16,10 @@ class APIClient {
         });
     }
 
-    createBlog(blog) {
+    createBlog(title, content) {
         return new Promise((resolve) => {
             setTimeout(() => {
-                this.blogs.push(blog);
+                this.blogs.push(title);
                 resolve();
             }, 1000);
         });

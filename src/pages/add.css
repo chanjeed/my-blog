@@ -1,0 +1,40 @@
+form {
+    text-align: center;
+}
+
+label {
+    text-align: left;
+}
+
+textarea {
+    width: 80%;
+}
+
+textarea:focus {
+    border: 3px solid #555;
+    text-align: left;
+}
+
+#add-input-title {
+    height: 20px;
+}
+
+#add-input-content {
+    height: 100px;
+}
+
+button {
+    background-color: orangered;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
