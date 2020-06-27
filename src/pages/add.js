@@ -22,6 +22,7 @@ class AddBlog {
         await createBlog(this.addTitle.value, this.addContent.value);
         this.addTitle.value = '';
         this.addContent.value = '';
+        window.location.href = 'index.html';   // redirect to index.html
     }
 
 }

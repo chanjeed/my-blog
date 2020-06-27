@@ -8,6 +8,7 @@ module.exports = {
     entry: {
         index: './src/pages/index.js',
         add: './src/pages/add.js',
+        view: './src/pages/view.js',
     },
     output: {
         filename: '[name].bundle.js',
@@ -69,6 +70,14 @@ module.exports = {
             favicon: `${__dirname}/src/assets/favicon.ico`,
             inject: 'body',
             chunks: ['add'],
+        }),
+        new HtmlWebpackPlugin({
+            hash: true,
+            filename: 'view.html',
+            template: `${__dirname}/src/pages/view.html`,
+            favicon: `${__dirname}/src/assets/favicon.ico`,
+            inject: 'body',
+            chunks: ['view'],
         }),
         new webpack.HotModuleReplacementPlugin(),
         new CleanWebpackPlugin(),

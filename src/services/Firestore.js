@@ -24,6 +24,12 @@ export const getBlogs = async () => {
     return data
 }
 
+export const getBlog = async (blogId) => {
+    const querySnapshot = await db.collection("blogs").doc(blogId).get()
+    console.log(querySnapshot.data())
+    return querySnapshot.data()
+}
+
 export const createBlog = (titleValue, contentValue) => db.collection("blogs").add({
     title: titleValue,
     content: contentValue

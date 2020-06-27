@@ -14,6 +14,7 @@ class BlogList {
 
     bindEvents() {
         this.list.addEventListener('click', this.onDeleteButtonClick.bind(this));
+        this.list.addEventListener('click', this.viewClick.bind(this));
     }
 
 
@@ -26,13 +27,23 @@ class BlogList {
         }
     }
 
+    async viewClick(e) {
+        if (e.target.className != 'delete') {
+            const blogId = e.target.dataset.id;
+            //console.log(e.target.dataset.id);
+            //const blog = await getBlog(blogId);
+            var url = 'view.html?blogId=' + encodeURIComponent(blogId);
+            window.location.href = url;
+        }
+    }
+
     async render() {
         const blogs = await getBlogs();
         let lis = '';
-        blogs.forEach((blog) => lis += `<li><span class="name">${blog.title}</span><span class="delete" data-id=${blog.id}>delete</span></li>`);
+        blogs.forEach((blog) => lis += `<li data-id=${blog.id}><span class="name">${blog.title}</span><span class="delete" data-id=${blog.id}>delete</span></li>`);
         this.list.innerHTML = lis;
     }
 }
 
-const blogList = new BlogList();
 
+const blogList = new BlogList();

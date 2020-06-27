@@ -10,3 +10,21 @@
 .delete:hover{
   background: purple;
 }
+
+#blog-list li{
+  padding: 20px;
+  border-left: 5px solid #ddd;
+  margin: 20px 10px;
+  background-color: lightyellow;
+  -webkit-box-shadow: 6px 13px 12px -4px rgba(0,0,0,0.21);
+  -moz-box-shadow: 6px 13px 12px -4px rgba(0,0,0,0.21);
+  box-shadow: 6px 13px 12px -4px rgba(0,0,0,0.21);
+}
+
+#blog-list li:hover  {
+  border-color: #9361bf;
+  cursor: pointer;
+}
+
+
+
