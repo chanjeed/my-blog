@@ -40,10 +40,16 @@ class BlogList {
     async render() {
         const blogs = await getBlogs();
         let lis = '';
-        blogs.forEach((blog) => lis += `<li data-id=${blog.id}><span class="name">${blog.title}</span><span class="delete" data-id=${blog.id}>delete</span></li>`);
+        blogs.forEach((blog) => lis += `<li data-id=` + sanitizeHTML(blog.id) + `><span class="name">` + sanitizeHTML(blog.title) + `</span><span class="delete" data-id=` + sanitizeHTML(blog.id) + `>delete</span></li>`);
         this.list.innerHTML = lis;
     }
 }
 
 
 const blogList = new BlogList();
+
+var sanitizeHTML = function (str) {
+    var temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+};
