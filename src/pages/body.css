@@ -1,0 +1,13 @@
+#wrapper{
+    width: 90%;
+    max-width: 960px;
+    margin: 40px auto;
+    border-radius: 6px;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    padding: 0 0 20px;
+    overflow: hidden;
+    border: 1px solid lightgray;
+    float: center;
+    background-color: aquamarine;
+}

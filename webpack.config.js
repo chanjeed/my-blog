@@ -6,6 +6,7 @@ const dotenv = require('dotenv').config();
 module.exports = {
     entry: {
         index: './src/pages/index.js',
+        add: './src/pages/add.js',
     },
     output: {
         filename: '[name].bundle.js',
@@ -59,6 +60,14 @@ module.exports = {
             favicon: `${__dirname}/src/assets/favicon.ico`,
             inject: 'body',
             chunks: ['index'],
+        }),
+        new HtmlWebpackPlugin({
+            hash: true,
+            filename: 'add.html',
+            template: `${__dirname}/src/pages/add.html`,
+            favicon: `${__dirname}/src/assets/favicon.ico`,
+            inject: 'body',
+            chunks: ['add'],
         }),
         new webpack.HotModuleReplacementPlugin(),
         new CleanWebpackPlugin(),
