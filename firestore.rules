@@ -4,6 +4,11 @@ service cloud.firestore {
     match /{document=**} {
       allow read, write: if false;
     }
-
+    match /blogs/{id} {
+      allow list: if true;
+      allow get: if true;
+      allow create: if true;
+      allow delete: if true;
+    }
   }
 }

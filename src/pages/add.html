@@ -34,10 +34,11 @@
             <form id="add-blog">
                 <div>
                     <label for="add-input-title">Title</label><br><br>
-                    <textarea id="add-input-title" placeholder="Title ..."></textarea><br><br>
+                    <textarea id="add-input-title" placeholder="Title ..." name="add-input-title"></textarea><br><br>
                     <label for="add-input-content">Content</label><br><br>
-                    <textarea id="add-input-content" placeholder="Content ..."></textarea><br><br>
-                    <button>Add</button>
+                    <textarea id="add-input-content" placeholder="Content ..."
+                        name="add-input-content"></textarea><br><br>
+                    <button type="submit" form="add-blog" value="submit">Add</button>
                 </div>
             </form>
         </div>

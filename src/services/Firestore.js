@@ -27,7 +27,7 @@ export const getBlogs = async () => {
 export const createBlog = (titleValue, contentValue) => db.collection("blogs").add({
     title: titleValue,
     content: contentValue
-});
+})
 
-//export const deleteBlog = (blogId) => db.collection('blogs').doc(blogId).delete()
+export const deleteBlog = (blogId) => db.collection('blogs').doc(blogId).delete()
 

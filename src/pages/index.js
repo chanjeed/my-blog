@@ -1,4 +1,4 @@
-import getBlogs from '../services/Firestore';
+import { getBlogs, deleteBlog } from '../services/Firestore';
 
 import './header.css';
 import './body.css';
@@ -14,6 +14,16 @@ class BlogList {
 
     bindEvents() {
         this.list.addEventListener('click', this.onDeleteButtonClick.bind(this));
+    }
+
+
+    async onDeleteButtonClick(e) {
+        if (e.target.className == 'delete') {
+            const blogId = e.target.dataset.id;
+            // console.log(e.target.dataset)
+            await deleteBlog(blogId);
+            this.render();
+        }
     }
 
     async render() {

@@ -1,5 +1,11 @@
-form {
+#add-blog{
     text-align: center;
+}
+
+#add-blog:after{
+    content: '';
+    display: block;
+    clear: both;
 }
 
 label {
@@ -8,11 +14,23 @@ label {
 
 textarea {
     width: 80%;
+    border: none;
+    resize: none;
 }
 
 textarea:focus {
     border: 3px solid #555;
     text-align: left;
+}
+
+
+
+
+textarea::placeholder {
+    color: orangered;
+    opacity: .5;
+    font-family: sans-serif;
+    font-weight: bold;
 }
 
 #add-input-title {
@@ -35,6 +53,10 @@ button {
     border-radius: 12px;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+button:hover {
+    background-color: tomato;
 }
 
 
