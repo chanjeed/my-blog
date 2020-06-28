@@ -19,6 +19,11 @@ footer {
     margin: 20px;
 }
 
+
+.align-center {
+    text-align: center;
+}
+
 #wrapper{
     width: 90%;
     max-width: 960px;
@@ -30,7 +35,7 @@ footer {
     overflow: hidden;
     border: 1px solid lightgray;
     background-color: orange;
-    float: center;
+    
     
 }
 

@@ -8,6 +8,7 @@ import './index.css';
 class BlogList {
     constructor() {
         this.list = document.querySelector('#blog-list ul');
+        this.searchBar = document.forms['search-blogs'].querySelector('input');
         this.bindEvents();
         this.render();
     }
@@ -15,6 +16,7 @@ class BlogList {
     bindEvents() {
         this.list.addEventListener('click', this.onDeleteButtonClick.bind(this));
         this.list.addEventListener('click', this.viewClick.bind(this));
+        this.searchBar.addEventListener('keyup', this.onSearchBarChange.bind(this));
     }
 
 
@@ -31,7 +33,8 @@ class BlogList {
     }
 
     async viewClick(e) {
-        if (e.target.className != 'delete') {
+        const className = e.target.className;
+        if (className == 'blog' || className == 'name' || className == 'date') {
             const blogId = e.target.dataset.id;
             //console.log(e.target.dataset.id);
             //const blog = await getBlog(blogId);
@@ -40,10 +43,23 @@ class BlogList {
         }
     }
 
+    onSearchBarChange(e) {
+        const term = e.target.value.toLowerCase();
+        const blogs = this.list.getElementsByTagName('li');
+        Array.from(blogs).forEach((blog) => {
+            const title = blog.firstElementChild.textContent;
+            if (title.toLowerCase().indexOf(term) != -1) {
+                blog.style.display = 'block';
+            } else {
+                blog.style.display = 'none';
+            }
+        });
+    }
+
     async render() {
         const blogs = await getBlogs();
         let lis = '';
-        blogs.forEach((blog) => lis += `<li data-id=` + sanitizeHTML(blog.id) + `><span class="name">` + sanitizeHTML(blog.title) + `</span><span class="delete" data-id=` + sanitizeHTML(blog.id) + `>delete</span><span class="date">` + `Created at: ` + blog.createdAt + `</span></li>`);
+        blogs.forEach((blog) => lis += `<li data-id=` + sanitizeHTML(blog.id) + ` class="blog" ><span class="name" data-id=` + sanitizeHTML(blog.id) + `>` + sanitizeHTML(blog.title) + `</span><span class="delete" data-id=` + sanitizeHTML(blog.id) + `>delete</span><span class="date" data-id=` + sanitizeHTML(blog.id) + `>` + `Created at: ` + blog.createdAt + `</span></li>`);
         this.list.innerHTML = lis;
     }
 }
