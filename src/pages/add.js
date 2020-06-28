@@ -19,7 +19,12 @@ class AddBlog {
     async onSubmit(e) {
         e.preventDefault();
 
-        await createBlog(this.addTitle.value, this.addContent.value);
+        const newData = {
+            title: this.addTitle.value,
+            content: this.addContent.value
+        };
+
+        await createBlog(newData);
         this.addTitle.value = '';
         this.addContent.value = '';
         window.location.href = 'index.html';   // redirect to index.html

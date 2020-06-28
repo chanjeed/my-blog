@@ -11,13 +11,20 @@
     7px 7px 0px rgba(0, 0, 0, 0.2);
 }
 
+#blog-button {
+    padding: 10px;
+    position: relative;
+    margin: 10px;
+    text-align: right;
+}
+
 #blog-content {
     margin: 15px;
     font-size: 1.2rem;
 }
 
 #delete-view-blog{
-    float: right;
+    display: inline-block;
     background:tomato;
     padding: 6px;
     border-radius: 4px;
@@ -27,5 +34,19 @@
   }
   
 #delete-view-blog:hover{
+    background:red;
+}
+
+#edit-view-blog{
+    display: inline-block;
+    background:tomato;
+    padding: 6px;
+    border-radius: 4px;
+    margin: 15px;
+    cursor: pointer;
+    color: white;
+  }
+  
+#edit-view-blog:hover{
     background:red;
 }

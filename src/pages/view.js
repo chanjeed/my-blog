@@ -1,4 +1,4 @@
-import { getBlog, deleteBlog } from '../services/Firestore';
+import { getBlog, deleteBlog, updateBlog } from '../services/Firestore';
 
 import './header.css';
 import './body.css';
@@ -10,6 +10,84 @@ var sanitizeHTML = function (str) {
     temp.textContent = str;
     return temp.innerHTML;
 };
+
+
+
+function renderPage(blogId) {
+    const blogData = getBlog(blogId);
+    // add data to page-content 
+    blogData.then(function (data) {
+        var blogTitle = document.querySelector('#blog-title');
+        blogTitle.innerHTML = "<h1>" + sanitizeHTML(data.title) + "</h1>";
+        var blogContent = document.querySelector('#blog-content');
+        blogContent.innerHTML = data.content;
+    });
+}
+
+
+
+//delete button
+var deleteButton = document.querySelector("#delete-view-blog");
+deleteButton.addEventListener('click', async function (e) {
+    var r = confirm("Are you sure to delete this blog?");
+    if (r == true) {
+        const blogId = e.target.dataset.id;
+        await deleteBlog(blogId);
+        var url = 'index.html';
+        window.location.href = url;
+    }
+});
+
+//edit-finish button
+var editButton = document.querySelector("#edit-view-blog");
+editButton.addEventListener('click', async function (e) {
+    var op = e.target.innerHTML;
+    var blogTitle = document.querySelector('#blog-title');
+    var blogContent = document.querySelector('#blog-content');
+
+    //edit button
+    if (op == "edit") {
+        //make content editable
+        blogTitle.setAttribute("contenteditable", "true");
+        blogContent.setAttribute("contenteditable", "true");
+
+        //change edit button to finish button
+        e.target.innerHTML = "finish";
+    }
+    //finish button
+    else if (op == "finish") {
+        var r = confirm("Do you want to save this editing?");
+
+        if (r == true) {
+
+            // Update edited content
+
+            const newData = {
+                id: e.target.dataset.id,
+                title: blogTitle.textContent,
+                content: blogContent.innerHTML
+            };
+
+            // Update Database
+            await updateBlog(newData);
+
+        }
+        else {
+
+            // Not update edited content
+            renderPage(e.target.dataset.id,);
+
+        }
+
+        // Make content uneditable
+        blogTitle.setAttribute("contenteditable", "false");
+        blogContent.setAttribute("contenteditable", "false");
+
+        //change edit button to finish button
+        e.target.innerHTML = "edit";
+    }
+
+});
 
 
 var url = document.location.href,
@@ -25,23 +103,8 @@ const blogId = data.blogId;
 var deleteButton = document.querySelector('#delete-view-blog');
 deleteButton.setAttribute("data-id", blogId);
 
-const blogData = getBlog(blogId);
+// add blog id to edit button
+var editButton = document.querySelector('#edit-view-blog');
+editButton.setAttribute("data-id", blogId);
 
-// add data to page-content 
-blogData.then(function (data) {
-    var blogTitle = document.querySelector('#blog-title');
-    blogTitle.innerHTML = "<h1>" + sanitizeHTML(data.title) + "</h1>";
-    var blogContent = document.querySelector('#blog-content');
-    blogContent.innerHTML = data.content;
-});
-
-
-//delete button
-
-var deleteButton = document.querySelector("#delete-view-blog");
-deleteButton.addEventListener('click', async function (e) {
-    const blogId = e.target.dataset.id;
-    await deleteBlog(blogId);
-    var url = 'index.html';
-    window.location.href = url;
-});
+renderPage(blogId);

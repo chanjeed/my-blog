@@ -16,10 +16,11 @@ firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 
 export const getBlogs = async () => {
-    const querySnapshot = await db.collection("blogs").get()
+    const querySnapshot = await db.collection("blogs").orderBy("createdAt", "desc").get()
     const data = []
     querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, title: doc.data().title, content: doc.data().content })
+        var date = doc.data().createdAt.toDate();
+        data.push({ id: doc.id, title: doc.data().title, content: doc.data().content, createdAt: date.toISOString().slice(0, 10) + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() });
     })
     return data
 }
@@ -30,9 +31,17 @@ export const getBlog = async (blogId) => {
     return querySnapshot.data()
 }
 
-export const createBlog = (titleValue, contentValue) => db.collection("blogs").add({
-    title: titleValue,
-    content: contentValue
+export const createBlog = (newData) => db.collection("blogs").add({
+    title: newData.title,
+    content: newData.content,
+    createdAt: new Date(),
+    updatedAt: new Date()
+})
+
+export const updateBlog = (newData) => db.collection("blogs").doc(newData.id).update({
+    title: newData.title,
+    content: newData.content,
+    updatedAt: new Date()
 })
 
 export const deleteBlog = (blogId) => db.collection('blogs').doc(blogId).delete()
