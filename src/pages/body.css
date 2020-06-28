@@ -6,12 +6,12 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image : url(../assets/body-background.jpg);
+    background-image : url(../assets/body-background.png);
+    background-size: cover;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 footer {
@@ -35,7 +35,7 @@ footer {
 }
 
 #page-banner {
-    background-color: aquamarine;
+    background-color: lemonchiffon;
 }
 
 #page-banner h1, #page-banner p{
