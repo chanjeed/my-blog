@@ -10,6 +10,12 @@ body {
     background-size: cover;
 }
 
+@media screen and (max-width: 800px) {
+    body {
+      font-size: 15px;
+    }
+}
+
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
@@ -41,10 +47,9 @@ footer {
 
 #page-banner {
     background-color: lemonchiffon;
-}
-
-#page-banner h1, #page-banner p{
+    font-size: 1.5rem;   
     width: 100%;
     text-align: center;
     margin: 10px auto;
 }
+

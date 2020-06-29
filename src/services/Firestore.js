@@ -20,7 +20,7 @@ export const getBlogs = async () => {
     const data = []
     querySnapshot.forEach((doc) => {
         var date = doc.data().createdAt.toDate();
-        data.push({ id: doc.id, title: doc.data().title, content: doc.data().content, createdAt: date.toISOString().slice(0, 10) + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() });
+        data.push({ id: doc.id, title: doc.data().title, content: doc.data().content, author: doc.data().author, createdAt: date.toISOString().slice(0, 10) + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() });
     })
     return data
 }
@@ -34,6 +34,7 @@ export const getBlog = async (blogId) => {
 export const createBlog = (newData) => db.collection("blogs").add({
     title: newData.title,
     content: newData.content,
+    author: newData.author,
     createdAt: new Date(),
     updatedAt: new Date()
 })
@@ -45,4 +46,5 @@ export const updateBlog = (newData) => db.collection("blogs").doc(newData.id).up
 })
 
 export const deleteBlog = (blogId) => db.collection('blogs').doc(blogId).delete()
+
 

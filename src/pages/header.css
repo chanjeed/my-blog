@@ -4,10 +4,11 @@ header {
 }
 
 header a{
-    color: goldenrod;
+    color: tomato;
     font-family: helvetica;
     text-decoration: none;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 header a:hover{
@@ -16,7 +17,7 @@ header a:hover{
 
 a:visited{
     
-    color: goldenrod;
+    color: tomato;
 }
   
 nav {

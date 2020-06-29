@@ -1,4 +1,6 @@
 import { createBlog } from '../services/Firestore';
+import firebase from 'firebase'
+import '../services/Auth';
 
 import './header.css';
 import './body.css';
@@ -19,17 +21,35 @@ class AddBlog {
     async onSubmit(e) {
         e.preventDefault();
 
-        const newData = {
-            title: this.addTitle.value,
-            content: this.addContent.value
-        };
+        if (this.addTitle.value == "") {
+            // No title alert
+            alert("Please fill in title!");
 
-        await createBlog(newData);
-        this.addTitle.value = '';
-        this.addContent.value = '';
-        window.location.href = 'index.html';   // redirect to index.html
+        }
+
+
+        else {
+            var user = firebase.auth().currentUser;
+            const current_username = user.displayName;;
+            console.log(current_username);
+
+            const newData = {
+                title: this.addTitle.value,
+                content: this.addContent.value,
+                author: current_username
+            };
+
+
+            await createBlog(newData);
+            this.addTitle.value = '';
+            this.addContent.value = '';
+            window.location.href = 'index.html';   // redirect to index.html
+
+        }
+
     }
-
 }
+
+
 
 const addBlog = new AddBlog();

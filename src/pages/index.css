@@ -1,3 +1,21 @@
+.current {
+  display: none;
+}
+
+#wrapper {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  max-width: 1280px;
+}
+
+#page-banner {
+  background-color: orange;
+  border-radius: 1rem;
+  width: 40%;
+  margin: 0px auto;
+}
+
 .delete{
   float: right;
   background: tomato;
@@ -12,10 +30,18 @@
 }
 
 .date{
-  color: tomato;
+  color: darkgoldenrod;
   float: right;
   padding: 6px;
   margin: 0 1rem;
+}
+
+.author{
+  color: tomato;
+}
+
+.name{
+  font-weight: bold;
 }
 
 #blog-list ul{
@@ -25,12 +51,13 @@
 #blog-list li{
   text-align: left;
   padding: 20px;
-  border-left: 5px solid #ddd;
+  border-left: 5px solid darkgoldenrod;
   margin: 20px 10px;
   background-color: lightyellow;
   -webkit-box-shadow: 6px 13px 12px -4px rgba(0,0,0,0.21);
   -moz-box-shadow: 6px 13px 12px -4px rgba(0,0,0,0.21);
   box-shadow: 6px 13px 12px -4px rgba(0,0,0,0.21);
+  border-radius: 1rem;
 }
 
 #blog-list li:hover  {
@@ -43,8 +70,8 @@
 #search-blogs input[type=text]{
   display: inline-block;
   width: 50%;
-  padding: 6px;
-  margin:10px auto;
+  padding: 15px;
+  margin:10px;
   border: none;
   
 }
@@ -67,6 +94,7 @@
   text-shadow: 0 0.04rem 0.04rem rgba(0,0,0,0.35);
   text-align:center;
   background-color: lemonchiffon;
+  box-shadow: 6px 13px 12px -4px rgba(0,0,0,0.21);
 }
 
 #new-button:hover {

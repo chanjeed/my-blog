@@ -1,4 +1,7 @@
 import { getBlogs, deleteBlog } from '../services/Firestore';
+import firebase from 'firebase'
+import '../services/Auth';
+
 
 import './header.css';
 import './body.css';
@@ -24,8 +27,7 @@ class BlogList {
         if (e.target.className == 'delete') {
             var r = confirm("Are you sure to delete this blog?");
             if (r == true) {
-                const blogId = e.target.dataset.id;
-                // console.log(e.target.dataset)
+                const blogId = e.target.parentElement.dataset.id;
                 await deleteBlog(blogId);
                 this.render();
             }
@@ -34,13 +36,19 @@ class BlogList {
 
     async viewClick(e) {
         const className = e.target.className;
-        if (className == 'blog' || className == 'name' || className == 'date') {
-            const blogId = e.target.dataset.id;
-            //console.log(e.target.dataset.id);
-            //const blog = await getBlog(blogId);
+        var blogId;
+        if (className == 'blog') {
+            var blogId = e.target.dataset.id;
             var url = 'view.html?blogId=' + encodeURIComponent(blogId);
             window.location.href = url;
         }
+        else if (className == 'name' || className == 'date') {
+
+            blogId = e.target.parentElement.dataset.id;
+            var url = 'view.html?blogId=' + encodeURIComponent(blogId);
+            window.location.href = url;
+        }
+
     }
 
     onSearchBarChange(e) {
@@ -58,9 +66,20 @@ class BlogList {
 
     async render() {
         const blogs = await getBlogs();
+        let user = firebase.auth().currentUser;
+        let current_username = user.displayName;;
         let lis = '';
-        blogs.forEach((blog) => lis += `<li data-id=` + sanitizeHTML(blog.id) + ` class="blog" ><span class="name" data-id=` + sanitizeHTML(blog.id) + `>` + sanitizeHTML(blog.title) + `</span><span class="delete" data-id=` + sanitizeHTML(blog.id) + `>delete</span><span class="date" data-id=` + sanitizeHTML(blog.id) + `>` + `Created at: ` + blog.createdAt + `</span></li>`);
+        blogs.forEach(function (blog) {
+            if (blog.author == current_username) {
+                lis += `<li data-id=` + sanitizeHTML(blog.id) + ` class="blog" ><span class="name" >` + sanitizeHTML(blog.title) + `</span><span class="delete" >delete</span><span class="date" > Created at: ` + blog.createdAt + `</span><br><br><span class="author" >By: @` + blog.author + `</span></li>`;
+            }
+            else {
+                lis += `<li data-id=` + sanitizeHTML(blog.id) + ` class="blog" ><span class="name" >` + sanitizeHTML(blog.title) + `</span><span class="delete" style="visibility: hidden" >delete</span><span class="date" > Created at: ` + blog.createdAt + `</span><br><br><span class="author" > By: @` + blog.author + `</span></li>`;
+            }
+
+        });
         this.list.innerHTML = lis;
+
     }
 }
 
@@ -72,3 +91,5 @@ var sanitizeHTML = function (str) {
     temp.textContent = str;
     return temp.innerHTML;
 };
+
+

@@ -40,7 +40,7 @@ textarea::placeholder {
 }
 
 button {
-    background-color: orangered;
+    background-color: tomato;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -54,7 +54,7 @@ button {
 }
 
 button:hover {
-    background-color: tomato;
+    background-color: orangered;
 }
 
 

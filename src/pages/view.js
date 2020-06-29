@@ -1,4 +1,6 @@
 import { getBlog, deleteBlog, updateBlog } from '../services/Firestore';
+import firebase from 'firebase';
+import '../services/Auth';
 
 import './header.css';
 import './body.css';
@@ -21,6 +23,16 @@ function renderPage(blogId) {
         blogTitle.innerHTML = "<h1>" + sanitizeHTML(data.title) + "</h1>";
         var blogContent = document.querySelector('#blog-content');
         blogContent.innerHTML = data.content;
+        var blogAuthor = document.querySelector('#blog-author');
+        blogAuthor.innerHTML = "By :  @" + data.author;
+        let user = firebase.auth().currentUser;
+        let current_username = user.displayName;
+        if (current_username != data.author) {
+            var editButton = document.querySelector('#edit-view-blog');
+            editButton.style.display = "none";
+            var deleteButton = document.querySelector('#delete-view-blog');
+            deleteButton.style.display = "none";
+        }
     });
 }
 
@@ -106,5 +118,9 @@ deleteButton.setAttribute("data-id", blogId);
 // add blog id to edit button
 var editButton = document.querySelector('#edit-view-blog');
 editButton.setAttribute("data-id", blogId);
+
+
+
+
 
 renderPage(blogId);

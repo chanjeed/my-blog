@@ -23,8 +23,15 @@
 }
 
 #blog-content {
-    margin: 15px;
-    font-size: 1.2rem;
+    margin: 50px;
+    font-size: 1.4rem;
+}
+
+#blog-author {
+    color: tomato;
+    margin: 50px;
+    font-size: 1.4rem;
+    text-align: right;
 }
 
 #delete-view-blog{
