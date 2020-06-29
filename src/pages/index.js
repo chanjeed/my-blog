@@ -10,8 +10,10 @@ import './index.css';
 
 class BlogList {
     constructor() {
+        this.onlyme = false;
         this.list = document.querySelector('#blog-list ul');
         this.searchBar = document.forms['search-blogs'].querySelector('input');
+        this.onlymeBox = document.querySelector('#checkbox-onlyme');
         this.bindEvents();
         this.render();
     }
@@ -20,6 +22,7 @@ class BlogList {
         this.list.addEventListener('click', this.onDeleteButtonClick.bind(this));
         this.list.addEventListener('click', this.viewClick.bind(this));
         this.searchBar.addEventListener('keyup', this.onSearchBarChange.bind(this));
+        this.onlymeBox.addEventListener('change', this.onOnlymeBoxChange.bind(this));
     }
 
 
@@ -51,6 +54,15 @@ class BlogList {
 
     }
 
+    onOnlymeBoxChange(e) {
+        if (this.onlymeBox.checked) {
+            this.onlyme = true;
+        } else {
+            this.onlyme = false;
+        }
+        this.render();
+    }
+
     onSearchBarChange(e) {
         const term = e.target.value.toLowerCase();
         const blogs = this.list.getElementsByTagName('li');
@@ -65,15 +77,17 @@ class BlogList {
     }
 
     async render() {
+
         const blogs = await getBlogs();
         let user = firebase.auth().currentUser;
         let current_username = user.displayName;;
         let lis = '';
+        let onlyme = this.onlyme;
         blogs.forEach(function (blog) {
             if (blog.author == current_username) {
                 lis += `<li data-id=` + sanitizeHTML(blog.id) + ` class="blog" ><span class="name" >` + sanitizeHTML(blog.title) + `</span><span class="delete" >delete</span><span class="date" > Created at: ` + blog.createdAt + `</span><br><br><span class="author" >By: @` + blog.author + `</span></li>`;
             }
-            else {
+            else if (!onlyme) {
                 lis += `<li data-id=` + sanitizeHTML(blog.id) + ` class="blog" ><span class="name" >` + sanitizeHTML(blog.title) + `</span><span class="delete" style="visibility: hidden" >delete</span><span class="date" > Created at: ` + blog.createdAt + `</span><br><br><span class="author" > By: @` + blog.author + `</span></li>`;
             }
 
