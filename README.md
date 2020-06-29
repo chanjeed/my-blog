@@ -2,6 +2,9 @@
 
 This is one of Build@Mercari 2020 assignments to practice the basic of Frontend. 
 
+## Access
+https://my-blog-5ed1a.web.app/
+
 ## Created using
 - Frontend
     - HTML
@@ -9,6 +12,9 @@ This is one of Build@Mercari 2020 assignments to practice the basic of Frontend.
     - JavaScript
 
 - Database
+    - Firestore
+
+- Hosting
     - Firebase
 
 ## How to use
