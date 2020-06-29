@@ -72,23 +72,47 @@
   display: inline-block;
   width: 80%;
   padding: 10px;
+  padding-top: 20px;
   margin: 20px;
   margin-left: 70px;
   text-align: center;
 }
 
+.container-checkbox {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+  margin: 0px 20px;
+}
+
+#search-blogs {
+  padding-left: 50px;
+  margin: 10px;
+}
+
 
 #search-blogs input[type=text]{
   display: inline-block;
-  width: 80%;
+  width: 70%;
   padding: 10px;
   margin: 20px;
   border: none;
+  font-size: 1.2rem;
   
 }
 
 #search-blogs input[type=text]:focus{
-  border-bottom: 2px solid tomato;
+  border-bottom: 5px solid tomato;
   
 }
 

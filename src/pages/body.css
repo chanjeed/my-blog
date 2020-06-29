@@ -11,10 +11,12 @@ body {
     margin: 0px;
 }
 
+
 @media screen and (max-width: 800px) {
     body {
       font-size: 15px;
     }
+   
 }
 
 code {
