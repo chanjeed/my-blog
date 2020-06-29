@@ -1,14 +1,20 @@
 header {
+    width: 100%;
     position: relative;
     top: 0;
+    background-color: orange;
+    box-shadow: inset 0px 0px 30px darkorange;
 }
 
 header a{
-    color: tomato;
+    color: lemonchiffon;
     font-family: helvetica;
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
+    border-left: 5px solid lemonchiffon;
+    border-right: 5px solid lemonchiffon;
+    padding: 0px 15px;
 }
 
 header a:hover{
@@ -17,7 +23,7 @@ header a:hover{
 
 a:visited{
     
-    color: tomato;
+    color:lemonchiffon;
 }
   
 nav {

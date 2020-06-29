@@ -1,3 +1,14 @@
+#wrapper {
+    margin: 30px auto;
+    border-radius: 1rem;
+}
+
+
+#page-banner {
+    margin: 0px;
+    padding: 10px;
+}
+
 #add-blog{
     text-align: center;
 }

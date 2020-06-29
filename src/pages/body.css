@@ -8,6 +8,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background-image : url(../assets/body-background.png);
     background-size: cover;
+    margin: 0px;
 }
 
 @media screen and (max-width: 800px) {

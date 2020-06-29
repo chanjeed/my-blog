@@ -10,10 +10,12 @@
 }
 
 #page-banner {
-  background-color: orange;
+  background-color: transparent;
   border-radius: 1rem;
   width: 40%;
   margin: 0px auto;
+  border-left: 10px solid orange;
+  border-right: 10px solid orange;
 }
 
 .delete{

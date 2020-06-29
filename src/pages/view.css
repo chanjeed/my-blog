@@ -1,5 +1,7 @@
 #wrapper {
     background-color: lemonchiffon;
+    margin: 30px auto;
+    border-radius: 1rem;
 }
 
 #blog-title h1{
