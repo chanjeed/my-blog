@@ -31,10 +31,18 @@
 
 #blog-author {
     color: tomato;
-    margin: 50px;
+    margin: 20px 50px;
     font-size: 1.4rem;
     text-align: right;
 }
+
+#blog-updatedAt {
+    color: darkgoldenrod;
+    margin: 20px 50px;
+    font-size: 1.4rem;
+    text-align: right;
+}
+
 
 #delete-view-blog{
     display: inline-block;

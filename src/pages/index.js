@@ -10,10 +10,12 @@ import './index.css';
 
 class BlogList {
     constructor() {
+        this.sortby = "createdAt";
         this.onlyme = false;
         this.list = document.querySelector('#blog-list ul');
         this.searchBar = document.forms['search-blogs'].querySelector('input');
         this.onlymeBox = document.querySelector('#checkbox-onlyme');
+        this.sortSelect = document.querySelector("#sort");
         this.bindEvents();
         this.render();
     }
@@ -23,6 +25,7 @@ class BlogList {
         this.list.addEventListener('click', this.viewClick.bind(this));
         this.searchBar.addEventListener('keyup', this.onSearchBarChange.bind(this));
         this.onlymeBox.addEventListener('change', this.onOnlymeBoxChange.bind(this));
+        this.sortSelect.addEventListener('change', this.onSortSelectChange.bind(this));
     }
 
 
@@ -63,6 +66,11 @@ class BlogList {
         this.render();
     }
 
+    onSortSelectChange(e) {
+        this.sortby = this.sortSelect.value;
+        this.render();
+    }
+
     onSearchBarChange(e) {
         const term = e.target.value.toLowerCase();
         const blogs = this.list.getElementsByTagName('li');
@@ -78,7 +86,7 @@ class BlogList {
 
     async render() {
 
-        const blogs = await getBlogs();
+        const blogs = await getBlogs(this.sortby);
         let user = firebase.auth().currentUser;
         let current_username = user.displayName;;
         let lis = '';

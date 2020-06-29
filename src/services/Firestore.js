@@ -15,12 +15,13 @@ firebase.initializeApp(firebaseConfig)
 
 const db = firebase.firestore()
 
-export const getBlogs = async () => {
-    const querySnapshot = await db.collection("blogs").orderBy("createdAt", "desc").get()
+export const getBlogs = async (sortby) => {
+    const querySnapshot = await db.collection("blogs").orderBy(sortby, "desc").get()
     const data = []
     querySnapshot.forEach((doc) => {
-        var date = doc.data().createdAt.toDate();
-        data.push({ id: doc.id, title: doc.data().title, content: doc.data().content, author: doc.data().author, createdAt: date.toISOString().slice(0, 10) + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() });
+        var create = doc.data().createdAt.toDate();
+        var update = doc.data().updatedAt.toDate();
+        data.push({ id: doc.id, title: doc.data().title, content: doc.data().content, author: doc.data().author, createdAt: create.toISOString().slice(0, 10) + " " + create.getHours() + ":" + create.getMinutes() + ":" + create.getSeconds(), updatedAt: update.toISOString().slice(0, 10) + " " + update.getHours() + ":" + update.getMinutes() + ":" + update.getSeconds() });
     })
     return data
 }

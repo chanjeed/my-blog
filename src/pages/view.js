@@ -25,6 +25,8 @@ function renderPage(blogId) {
         blogContent.innerHTML = data.content;
         var blogAuthor = document.querySelector('#blog-author');
         blogAuthor.innerHTML = "By :  @" + data.author;
+        var blogUpdatedAt = document.querySelector('#blog-updatedAt');
+        blogUpdatedAt.innerHTML = "Last updated : " + data.updatedAt.toDate().toISOString().slice(0, 10) + " " + data.updatedAt.toDate().getHours() + ":" + data.updatedAt.toDate().getMinutes() + ":" + data.updatedAt.toDate().getSeconds();
         let user = firebase.auth().currentUser;
         let current_username = user.displayName;
         if (current_username != data.author) {
@@ -83,13 +85,15 @@ editButton.addEventListener('click', async function (e) {
             // Update Database
             await updateBlog(newData);
 
-        }
-        else {
 
-            // Not update edited content
-            renderPage(e.target.dataset.id,);
 
         }
+
+
+
+        renderPage(e.target.dataset.id,);
+
+
 
         // Make content uneditable
         blogTitle.setAttribute("contenteditable", "false");
